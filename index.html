@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cielo Nocturno con Luciérnagas Aleatorias</title>
+    <title>Cielo Nocturno con Nieve</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Sacramento&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,7 +14,7 @@
 
         body {
             height: 100vh;
-            background: #0d0f18;
+            background: #111;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -26,22 +26,50 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, #0b0d15, #1d1f2c);
+            background: radial-gradient(circle, #0d0f18, #1d1f2c);
             overflow: hidden;
         }
 
-        .firefly {
+        .star {
             position: absolute;
-            width: 10px;
-            height: 10px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 223, 0, 1) 0%, rgba(255, 223, 0, 0.1) 70%);
-            animation: glow 2s infinite ease-in-out;
+            background-color: rgba(255, 255, 255, 0.7);
+            animation: twinkle 2s infinite ease-in-out;
+            will-change: transform, opacity;
         }
 
-        @keyframes glow {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
+        .snowflake {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: rgba(255, 223, 0, 0.8);
+            border-radius: 50%;
+            animation: fall 5s linear infinite;
+            will-change: transform;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) translateX(0);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(50vh) translateX(-10px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) translateX(20px);
+                opacity: 0;
+            }
         }
 
         .glow-text {
@@ -72,62 +100,59 @@
                              0 0 60px rgba(255, 255, 255, 0.5);
             }
         }
+
+        /* Responsive optimizations */
+        @media (max-width: 600px) {
+            .star {
+                width: 1.5px;
+                height: 1.5px;
+            }
+            .snowflake {
+                width: 3px;
+                height: 3px;
+                animation-duration: 6s;
+            }
+            .glow-text {
+                font-size: 2rem;
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .glow-text {
+                font-size: 2.5rem;
+                width: 80%;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="night-sky" id="night-sky">
+    <div class="night-sky">
+        <!-- Stars -->
+        <div class="star" style="top: 10%; left: 10%;"></div>
+        <div class="star" style="top: 25%; left: 60%;"></div>
+        <div class="star" style="top: 40%; left: 30%;"></div>
+        <div class="star" style="top: 70%; left: 50%;"></div>
+        <div class="star" style="top: 80%; left: 15%;"></div>
+        <div class="star" style="top: 50%; left: 80%;"></div>
+        <div class="star" style="top: 90%; left: 70%;"></div>
+        <div class="star" style="top: 20%; left: 80%;"></div>
+        <div class="star" style="top: 60%; left: 20%;"></div>
+
+        <!-- Snowflakes -->
+        <div class="snowflake" style="top: 0%; left: 10%; animation-duration: 5s;"></div>
+        <div class="snowflake" style="top: -5%; left: 30%; animation-duration: 6s;"></div>
+        <div class="snowflake" style="top: -10%; left: 50%; animation-duration: 4.5s;"></div>
+        <div class="snowflake" style="top: -15%; left: 70%; animation-duration: 5.5s;"></div>
+        <div class="snowflake" style="top: -20%; left: 90%; animation-duration: 6.5s;"></div>
+        <div class="snowflake" style="top: -25%; left: 20%; animation-duration: 4s;"></div>
+        <div class="snowflake" style="top: -30%; left: 40%; animation-duration: 5.2s;"></div>
+
+        <!-- Text -->
         <div class="glow-text">
             ¿Deseas ser mi compañera,<br>novia y amor de mi vida?
         </div>
     </div>
-    <script>
-        const nightSky = document.getElementById("night-sky");
-        const fireflyCount = 20; // Número de luciérnagas
-
-        function randomPosition() {
-            return Math.random() * 100; // Genera una posición entre 0% y 100%
-        }
-
-        function randomDuration() {
-            return Math.random() * 5 + 5; // Genera duración entre 5 y 10 segundos
-        }
-
-        function randomDelay() {
-            return Math.random() * 3; // Genera retraso entre 0 y 3 segundos
-        }
-
-        function createFirefly() {
-            const firefly = document.createElement("div");
-            firefly.classList.add("firefly");
-            nightSky.appendChild(firefly);
-
-            const keyframesName = `fly-${Math.random().toString(36).substr(2, 5)}`;
-            const startX = randomPosition();
-            const startY = randomPosition();
-
-            const styleSheet = document.styleSheets[0];
-            const keyframes = `
-                @keyframes ${keyframesName} {
-                    0% { transform: translate(0, 0); }
-                    25% { transform: translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px); }
-                    50% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px); }
-                    75% { transform: translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px); }
-                    100% { transform: translate(0, 0); }
-                }
-            `;
-            styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
-
-            firefly.style.top = `${startY}%`;
-            firefly.style.left = `${startX}%`;
-            firefly.style.animation = `${keyframesName} ${randomDuration()}s infinite ease-in-out, glow 2s infinite ease-in-out`;
-            firefly.style.animationDelay = `${randomDelay()}s`;
-        }
-
-        // Crear luciérnagas
-        for (let i = 0; i < fireflyCount; i++) {
-            createFirefly();
-        }
-    </script>
 </body>
 </html>
 
