@@ -30,29 +30,13 @@
             overflow: hidden;
         }
 
-        .star, .firefly {
-            position: absolute;
-            border-radius: 50%;
-            will-change: transform, opacity;
-        }
-
-        .star {
-            width: 2px;
-            height: 2px;
-            background-color: rgba(255, 255, 255, 0.7);
-            animation: twinkle 2s infinite ease-in-out;
-        }
-
         .firefly {
+            position: absolute;
             width: 10px;
             height: 10px;
+            border-radius: 50%;
             background: radial-gradient(circle, rgba(255, 223, 0, 1) 0%, rgba(255, 223, 0, 0.1) 70%);
-            animation: glow 2.5s ease-in-out infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+            animation: glow 2s infinite ease-in-out;
         }
 
         @keyframes glow {
@@ -92,7 +76,6 @@
 </head>
 <body>
     <div class="night-sky" id="night-sky">
-        <!-- Text -->
         <div class="glow-text">
             ¿Deseas ser mi compañera,<br>novia y amor de mi vida?
         </div>
@@ -101,23 +84,30 @@
         const nightSky = document.getElementById("night-sky");
         const fireflyCount = 20; // Número de luciérnagas
 
+        function randomPosition() {
+            return Math.random() * 100; // Genera una posición entre 0% y 100%
+        }
+
+        function randomDuration() {
+            return Math.random() * 5 + 5; // Genera duración entre 5 y 10 segundos
+        }
+
+        function randomDelay() {
+            return Math.random() * 3; // Genera retraso entre 0 y 3 segundos
+        }
+
         function createFirefly() {
             const firefly = document.createElement("div");
             firefly.classList.add("firefly");
             nightSky.appendChild(firefly);
 
-            // Posición inicial aleatoria
-            const startX = Math.random() * 100;
-            const startY = Math.random() * 100;
+            const keyframesName = `fly-${Math.random().toString(36).substr(2, 5)}`;
+            const startX = randomPosition();
+            const startY = randomPosition();
 
-            // Posiciona la luciérnaga
-            firefly.style.top = `${startY}%`;
-            firefly.style.left = `${startX}%`;
-
-            // Movimiento aleatorio
-            const animationDuration = Math.random() * 5 + 5; // Duración entre 5 y 10 segundos
+            const styleSheet = document.styleSheets[0];
             const keyframes = `
-                @keyframes move-${startX}-${startY} {
+                @keyframes ${keyframesName} {
                     0% { transform: translate(0, 0); }
                     25% { transform: translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px); }
                     50% { transform: translate(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px); }
@@ -125,19 +115,19 @@
                     100% { transform: translate(0, 0); }
                 }
             `;
-
-            // Inserta los keyframes únicos
-            const styleSheet = document.styleSheets[0];
             styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
 
-            // Asigna la animación a la luciérnaga
-            firefly.style.animation = `move-${startX}-${startY} ${animationDuration}s infinite ease-in-out, glow 2.5s infinite ease-in-out`;
+            firefly.style.top = `${startY}%`;
+            firefly.style.left = `${startX}%`;
+            firefly.style.animation = `${keyframesName} ${randomDuration()}s infinite ease-in-out, glow 2s infinite ease-in-out`;
+            firefly.style.animationDelay = `${randomDelay()}s`;
         }
 
-        // Crea múltiples luciérnagas
+        // Crear luciérnagas
         for (let i = 0; i < fireflyCount; i++) {
             createFirefly();
         }
     </script>
 </body>
 </html>
+
