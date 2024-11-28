@@ -85,5 +85,78 @@
 
         .glow-text {
             font-size: 3rem;
-            font-family: 'Sacramento',
+            font-family: 'Sacramento', cursive;
+            color: #ffeb3b;
+            animation: glow-text 1.5s infinite alternate;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 
+                         0 0 15px rgba(255, 255, 255, 0.4), 
+                         0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes glow-text {
+            0% {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 
+                             0 0 15px rgba(255, 255, 255, 0.4), 
+                             0 0 30px rgba(255, 255, 255, 0.3);
+            }
+            100% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 
+                             0 0 30px rgba(255, 255, 255, 0.7), 
+                             0 0 60px rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        /* Responsive optimizations */
+        @media (max-width: 600px) {
+            .star {
+                width: 1.5px;
+                height: 1.5px;
+            }
+            .firefly {
+                width: 5px;
+                height: 5px;
+                animation-duration: 5s;
+            }
+            .glow-text {
+                font-size: 2rem;
+                padding: 10px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .glow-text {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="night-sky">
+        <!-- Stars -->
+        <div class="star" style="top: 10%; left: 10%;"></div>
+        <div class="star" style="top: 25%; left: 60%;"></div>
+        <div class="star" style="top: 40%; left: 30%;"></div>
+        <div class="star" style="top: 70%; left: 50%;"></div>
+        <div class="star" style="top: 80%; left: 15%;"></div>
+        <div class="star" style="top: 50%; left: 80%;"></div>
+        <div class="star" style="top: 90%; left: 70%;"></div>
+        <div class="star" style="top: 20%; left: 80%;"></div>
+        <div class="star" style="top: 60%; left: 20%;"></div>
+
+        <!-- Fireflies -->
+        <div class="firefly" style="top: 15%; left: 30%;"></div>
+        <div class="firefly" style="top: 45%; left: 70%;"></div>
+        <div class="firefly" style="top: 60%; left: 50%;"></div>
+        <div class="firefly" style="top: 30%; left: 10%;"></div>
+        <div class="firefly" style="top: 80%; left: 60%;"></div>
+        <div class="firefly" style="top: 50%; left: 80%;"></div>
+
+        <!-- Text -->
+        <div class="glow-text">
+            ¿Deseas ser mi compañera, novia y amor de mi vida?
+        </div>
+    </div>
+</body>
+</html>
 
