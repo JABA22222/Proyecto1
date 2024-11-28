@@ -51,11 +51,20 @@
 
         .firefly {
             position: absolute;
-            width: 12px;
-            height: 12px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background-color: rgba(255, 223, 0, 0.8);
-            will-change: transform, opacity;
+            animation: glow 2s infinite alternate, move 8s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 223, 0, 0.5), 0 0 20px rgba(255, 223, 0, 0.4);
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(255, 223, 0, 0.8), 0 0 40px rgba(255, 223, 0, 0.6);
+            }
         }
 
         .glow-text {
@@ -130,6 +139,8 @@
         <div class="firefly" id="firefly3"></div>
         <div class="firefly" id="firefly4"></div>
         <div class="firefly" id="firefly5"></div>
+        <div class="firefly" id="firefly6"></div>
+        <div class="firefly" id="firefly7"></div>
 
         <!-- Text -->
         <div class="glow-text">
@@ -156,3 +167,4 @@
     </script>
 </body>
 </html>
+
