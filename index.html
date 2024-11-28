@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cielo Nocturno Optimizado</title>
+    <title>Cielo Nocturno</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Sacramento&display=swap" rel="stylesheet">
     <style>
         * {
@@ -14,7 +14,7 @@
 
         body {
             height: 100vh;
-            background: #0d0f18;
+            background: #111;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -26,18 +26,28 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, #0d0f18, #1a1d2e);
+            background: radial-gradient(circle, #0d0f18, #1d1f2c);
             overflow: hidden;
-            z-index: -1;
+        }
+
+        .star, .firefly {
+            position: absolute;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+            will-change: transform, opacity;
         }
 
         .star {
-            position: absolute;
             width: 2px;
             height: 2px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            animation: twinkle 1.5s infinite ease-in-out;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .firefly {
+            width: 6px;
+            height: 6px;
+            background-color: rgba(255, 223, 0, 0.8);
+            animation: fly 4s ease-in-out infinite, glow 2s ease-in-out infinite;
         }
 
         @keyframes twinkle {
@@ -49,106 +59,31 @@
             }
         }
 
-        .firefly {
-            position: absolute;
-            background-color: rgba(255, 223, 0, 0.8);
-            border-radius: 50%;
-            width: 5px;
-            height: 5px;
-            animation: fly 3s ease-in-out infinite, glow 1.5s infinite alternate;
-        }
-
         @keyframes fly {
             0%, 100% {
-                transform: translate3d(0, 0, 0);
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(50px, 30px);
             }
             50% {
-                transform: translate3d(20px, -40px, 0);
+                transform: translate(-40px, -20px);
+            }
+            75% {
+                transform: translate(30px, -50px);
             }
         }
 
         @keyframes glow {
-            0% {
+            0%, 100% {
                 opacity: 0.5;
             }
-            100% {
+            50% {
                 opacity: 1;
             }
         }
 
         .glow-text {
-            font-size: 2.5rem;
-            font-weight: 600;
-            font-family: 'Sacramento', cursive;
-            color: #ffeb3b;
-            text-align: center;
-            animation: glow-text 1.5s infinite alternate;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.4), 0 0 20px rgba(255, 255, 255, 0.3);
-        }
+            font-size: 3rem;
+            font-family: 'Sacramento',
 
-        @keyframes glow-text {
-            0% {
-                text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-            }
-            100% {
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .glow-text {
-                font-size: 2rem;
-                padding: 0 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .glow-text {
-                font-size: 1.8rem;
-            }
-            .firefly {
-                width: 4px;
-                height: 4px;
-            }
-            .star {
-                width: 1.5px;
-                height: 1.5px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="night-sky">
-        <!-- Estrellas (reducidas para optimización) -->
-        <div class="star" style="top: 10%; left: 15%; animation-delay: 0s;"></div>
-        <div class="star" style="top: 25%; left: 45%; animation-delay: 0.5s;"></div>
-        <div class="star" style="top: 40%; left: 70%; animation-delay: 1s;"></div>
-        <div class="star" style="top: 65%; left: 20%; animation-delay: 1.5s;"></div>
-        <div class="star" style="top: 80%; left: 60%; animation-delay: 2s;"></div>
-
-        <!-- Luciérnagas (reducidas para optimización) -->
-        <div class="firefly" style="top: 20%; left: 30%; animation-delay: 0s;"></div>
-        <div class="firefly" style="top: 50%; left: 70%; animation-delay: 0.8s;"></div>
-        <div class="firefly" style="top: 70%; left: 40%; animation-delay: 1.2s;"></div>
-        <div class="firefly" style="top: 35%; left: 15%; animation-delay: 2s;"></div>
-        <div class="firefly" style="top: 80%; left: 55%; animation-delay: 2.5s;"></div>
-
-        <!-- Texto brillante -->
-        <div class="glow-text">
-            Mi amor, te amo. <br>
-Eres lo más hermoso que la vida pudo regalarme. <br>
-Esa casualidad inesperada que no sabía que estaba buscando. <br>
-No entiendo qué hice para merecerte, <br>
-pero espero tener la oportunidad de demostrarlo durante 100 vidas más. <br>
-Te amo profundamente, mi amor. <br>
-
-Sin más preámbulos, <br>
-quiero hacerte una pregunta que sale desde el corazón: <br>
-¿Te gustaría ser mi compañera, <br>
-mi novia, <br>
-y esa estrella que continúa iluminando mis días? <br>
-          🌟
-        </div>
-    </div>
-</body>
-</html>
