@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cielo Nocturno con Nieve</title>
+    <title>Cielo Nocturno</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Sacramento&display=swap" rel="stylesheet">
     <style>
         * {
@@ -32,20 +32,12 @@
 
         .star {
             position: absolute;
+            width: 2px;
+            height: 2px;
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.7);
             animation: twinkle 2s infinite ease-in-out;
-            will-change: transform, opacity;
-        }
-
-        .snowflake {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background-color: rgba(255, 223, 0, 0.8);
-            border-radius: 50%;
-            animation: fall 5s linear infinite;
-            will-change: transform;
+            will-change: opacity;
         }
 
         @keyframes twinkle {
@@ -57,19 +49,13 @@
             }
         }
 
-        @keyframes fall {
-            0% {
-                transform: translateY(-10vh) translateX(0);
-                opacity: 0.8;
-            }
-            50% {
-                transform: translateY(50vh) translateX(-10px);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(110vh) translateX(20px);
-                opacity: 0;
-            }
+        .firefly {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: rgba(255, 223, 0, 0.8);
+            will-change: transform, opacity;
         }
 
         .glow-text {
@@ -107,10 +93,9 @@
                 width: 1.5px;
                 height: 1.5px;
             }
-            .snowflake {
-                width: 3px;
-                height: 3px;
-                animation-duration: 6s;
+            .firefly {
+                width: 5px;
+                height: 5px;
             }
             .glow-text {
                 font-size: 2rem;
@@ -139,20 +124,35 @@
         <div class="star" style="top: 20%; left: 80%;"></div>
         <div class="star" style="top: 60%; left: 20%;"></div>
 
-        <!-- Snowflakes -->
-        <div class="snowflake" style="top: 0%; left: 10%; animation-duration: 5s;"></div>
-        <div class="snowflake" style="top: -5%; left: 30%; animation-duration: 6s;"></div>
-        <div class="snowflake" style="top: -10%; left: 50%; animation-duration: 4.5s;"></div>
-        <div class="snowflake" style="top: -15%; left: 70%; animation-duration: 5.5s;"></div>
-        <div class="snowflake" style="top: -20%; left: 90%; animation-duration: 6.5s;"></div>
-        <div class="snowflake" style="top: -25%; left: 20%; animation-duration: 4s;"></div>
-        <div class="snowflake" style="top: -30%; left: 40%; animation-duration: 5.2s;"></div>
+        <!-- Fireflies -->
+        <div class="firefly" id="firefly1"></div>
+        <div class="firefly" id="firefly2"></div>
+        <div class="firefly" id="firefly3"></div>
+        <div class="firefly" id="firefly4"></div>
+        <div class="firefly" id="firefly5"></div>
 
         <!-- Text -->
         <div class="glow-text">
             ¿Deseas ser mi compañera,<br>novia y amor de mi vida?
         </div>
     </div>
+
+    <script>
+        // Función para crear movimiento aleatorio de una luciérnaga
+        function animateFirefly(firefly) {
+            const duration = Math.random() * 4 + 4; // Duración entre 4 y 8 segundos
+            const x = Math.random() * 100; // Posición X aleatoria
+            const y = Math.random() * 100; // Posición Y aleatoria
+            firefly.style.transition = `${duration}s ease-in-out`;
+            firefly.style.transform = `translate(${x}vw, ${y}vh)`;
+
+            // Recalcular movimiento después de cada animación
+            setTimeout(() => animateFirefly(firefly), duration * 1000);
+        }
+
+        // Inicializar luciérnagas
+        const fireflies = document.querySelectorAll('.firefly');
+        fireflies.forEach(firefly => animateFirefly(firefly));
+    </script>
 </body>
 </html>
-
