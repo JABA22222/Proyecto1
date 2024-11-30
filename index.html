@@ -39,15 +39,6 @@
             animation: twinkle 2s infinite ease-in-out;
         }
 
-        .firefly {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.7);
-            animation: twinkle 3s infinite ease-in-out;
-        }
-
         @keyframes twinkle {
             0%, 100% {
                 opacity: 0.5;
@@ -88,7 +79,7 @@
 
         /* Responsive optimizations */
         @media (max-width: 600px) {
-            .star, .firefly {
+            .star {
                 width: 1.5px;
                 height: 1.5px;
             }
@@ -118,11 +109,15 @@
         <div class="star" style="top: 90%; left: 70%;"></div>
         <div class="star" style="top: 20%; left: 80%;"></div>
         <div class="star" style="top: 60%; left: 20%;"></div>
-        <div class="firefly" style="top: 20%; left: 10%;"></div>
-        <div class="firefly" style="top: 50%; left: 30%;"></div>
-        <div class="firefly" style="top: 80%; left: 50%;"></div>
-        <div class="firefly" style="top: 70%; left: 70%;"></div>
-        <div class="firefly" style="top: 30%; left: 90%;"></div>
+        <div class="star" style="top: 30%; left: 40%;"></div>
+        <div class="star" style="top: 10%; left: 70%;"></div>
+        <div class="star" style="top: 50%; left: 60%;"></div>
+        <div class="star" style="top: 15%; left: 80%;"></div>
+        <div class="star" style="top: 70%; left: 90%;"></div>
+        <div class="star" style="top: 85%; left: 25%;"></div>
+        <div class="star" style="top: 20%; left: 50%;"></div>
+        <div class="star" style="top: 55%; left: 10%;"></div>
+        <div class="star" style="top: 75%; left: 80%;"></div>
 
         <!-- Text -->
         <div class="glow-text">
